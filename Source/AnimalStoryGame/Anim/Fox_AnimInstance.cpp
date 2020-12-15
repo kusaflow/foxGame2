@@ -16,6 +16,7 @@ void UFox_AnimInstance::update() {
 		//Player_vel = player->
 		Player_vel = player->VelForAnim_MoveFor;
 		interact = player->interact;
+		CrouchOrStand = player->StandCrouch;
 	}
 
 }

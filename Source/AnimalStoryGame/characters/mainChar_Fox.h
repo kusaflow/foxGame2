@@ -30,6 +30,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "kusaVar", meta = (AllowPrivateAccess = "true"))
 	float VelForAnim_MoveFor = 400;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "kusaVar", meta = (AllowPrivateAccess = "true"))
+	float StandCrouch = 0;
+
 
 	bool bCanLookAround = false;
 
@@ -127,6 +130,9 @@ public:
 
 	UFUNCTION()
 	void GoSlow(float val);
+
+	UFUNCTION()
+		void GoCrouch(float val);
 
 	UFUNCTION()
 	void CameraYaw_z(float val);

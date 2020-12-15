@@ -44,7 +44,6 @@ void AmainChar_Fox::BeginPlay()
 
 	//RootComponent->AddLocalRotation(FRotator(0, 60, 0));
 
-
 	
 
 	
@@ -118,7 +117,8 @@ void AmainChar_Fox::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	PlayerInputComponent->BindAxis("moveLeftRight", this, &AmainChar_Fox::moveLeftRight);
 
 	PlayerInputComponent->BindAxis("GoSlow", this, &AmainChar_Fox::GoSlow);
-	
+	PlayerInputComponent->BindAxis("crouch", this, &AmainChar_Fox::GoCrouch);
+
 	
 	PlayerInputComponent->BindAxis("xAxis", this, &AmainChar_Fox::CameraYaw_z);
 	PlayerInputComponent->BindAxis("yAxis", this, &AmainChar_Fox::CameraPitch_y);
@@ -208,6 +208,33 @@ void AmainChar_Fox::GoSlow(float val) {
 	}
 }
 
+void AmainChar_Fox::GoCrouch(float val) {
+	if (disableInput_movement) {
+		return;
+	}
+
+	VelShouldBe = 900;
+	
+	if (val == 1) {
+		Crouch();
+		VelShouldBe = 200;
+		if (StandCrouch < 100) {
+			StandCrouch += 400 * GetWorld()->DeltaTimeSeconds;
+		}
+		else {
+			StandCrouch = 100;
+		}
+	}
+	else {
+		UnCrouch();
+		if (StandCrouch > 0) {
+			StandCrouch -= 400 * GetWorld()->DeltaTimeSeconds;
+		}
+		else {
+			StandCrouch = 0;
+		}
+	}
+}
 
 void AmainChar_Fox::CameraYaw_z(float val) {
 	if (disableInput_camera) {

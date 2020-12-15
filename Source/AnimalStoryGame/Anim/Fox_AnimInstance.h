@@ -42,6 +42,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "kusaVar")
 	float Player_vel;
 
+	UPROPERTY(BlueprintReadWrite, Category = "kusaVar")
+	float CrouchOrStand;
+
 	//range from 0 to 500
 	UPROPERTY(BlueprintReadWrite, Category = "kusaVarT")
 	float interact;

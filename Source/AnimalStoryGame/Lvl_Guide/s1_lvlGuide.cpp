@@ -23,9 +23,9 @@ As1_lvlGuide::As1_lvlGuide()
 	rotation[0] = FRotator(0);
 	Box_Bounds[0] = FVector(365,78,425);
 
-	locations[1] = FVector(-9730.0, -3555.0, 500);
+	locations[1] = FVector(-8726, -3700, 500);
 	rotation[1] = FRotator(0, -70, 0);
-	Box_Bounds[1] = FVector(365, 78, 425);
+	Box_Bounds[1] = FVector(2095, 77, 1084);
 
 	locations[2] = FVector(-15590.0, -12190.0, -270.0);
 	rotation[2] = FRotator(0, -70, 0);
