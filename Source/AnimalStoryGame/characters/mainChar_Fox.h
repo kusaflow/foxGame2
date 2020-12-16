@@ -38,6 +38,8 @@ public:
 
 	bool bIsMovingForward = true , bIsMoving = false;
 
+	bool bIsCrouching = false, bIsWalking = false;
+
 
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "kusaVar")

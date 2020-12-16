@@ -81,6 +81,13 @@ void AmainChar_Fox::Tick(float DeltaTime)
 		interact = 0;
 	}
 
+	//velocivty change
+	if (!bIsCrouching && !bIsWalking)
+		VelShouldBe = 1000;
+	else
+		VelShouldBe = 200;
+
+
 	//state change check
 	if (do_changeState_at_mileStone) {
 		if (interact >= mileStone_interactVal) {
@@ -200,11 +207,14 @@ void AmainChar_Fox::GoSlow(float val) {
 	if (disableInput_movement) {
 		return;
 	}
+	UE_LOG(LogTemp, Warning, TEXT("working"));
 
-	VelShouldBe = 900;
 	
 	if (val == 1) {
-		VelShouldBe = 200;
+		bIsWalking = true;
+	}
+	else {
+		bIsWalking = false;
 	}
 }
 
@@ -213,11 +223,12 @@ void AmainChar_Fox::GoCrouch(float val) {
 		return;
 	}
 
-	VelShouldBe = 900;
 	
 	if (val == 1) {
 		Crouch();
-		VelShouldBe = 200;
+
+		bIsCrouching = true;
+
 		if (StandCrouch < 100) {
 			StandCrouch += 400 * GetWorld()->DeltaTimeSeconds;
 		}
@@ -226,6 +237,7 @@ void AmainChar_Fox::GoCrouch(float val) {
 		}
 	}
 	else {
+		bIsCrouching = false;
 		UnCrouch();
 		if (StandCrouch > 0) {
 			StandCrouch -= 400 * GetWorld()->DeltaTimeSeconds;
