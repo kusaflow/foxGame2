@@ -14,6 +14,8 @@
 #include "../kusaGameInstance.h" 	
 #include "Components/CapsuleComponent.h"
 #include "Engine/EngineTypes.h"
+#include "Perception/AIPerceptionStimuliSourceComponent.h"
+#include "Perception/AISense_Sight.h"
 
 
 // Sets default values
@@ -33,7 +35,10 @@ AmainChar_Fox::AmainChar_Fox()
 
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName);
-	
+
+	//Ai==============================
+	Ai_percep_stim = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("AI_Perception_Stimuli"));
+		
 
 }
 

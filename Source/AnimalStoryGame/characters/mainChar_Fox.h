@@ -23,6 +23,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FollowCamera;
 
+	//AI-----------------
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = AI, meta = (AllowPrivateAccess = "true"))
+	class UAIPerceptionStimuliSourceComponent* Ai_percep_stim;
+	//-------==============
+
+
+
 
 	//=======Variable================================
 	float VelShouldBe = 400;
@@ -40,7 +47,7 @@ public:
 
 	bool bIsCrouching = false, bIsWalking = false;
 
-
+	
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "kusaVar")
 	float interact;
