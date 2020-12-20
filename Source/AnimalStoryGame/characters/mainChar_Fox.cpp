@@ -127,6 +127,19 @@ void AmainChar_Fox::Tick(float DeltaTime)
 		
 	}
 
+	//zoom in or not
+	if (!bisDead) {
+		if (gameInst->bDoZoomOut) {
+			if (cameraBoom->TargetArmLength < 2000)
+				cameraBoom->TargetArmLength += 3000*DeltaTime;
+		}
+		else {
+			if (cameraBoom->TargetArmLength > 800)
+				cameraBoom->TargetArmLength -= 500 * DeltaTime;
+			//cameraBoom->TargetArmLength = 800;
+		}
+	}
+
 		
 	
 }

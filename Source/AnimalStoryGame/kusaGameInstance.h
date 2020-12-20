@@ -37,4 +37,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "kusaVar")
 		bool bDrawGuideActor;
 
+	//do zoom in or not
+	UPROPERTY(BlueprintReadWrite, Category = "kusaVar")
+		bool bDoZoomOut = false;
+
+
 };
