@@ -37,11 +37,8 @@ AmainChar_Fox::AmainChar_Fox()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName);
 
-	physAnim = CreateDefaultSubobject<UPhysicalAnimationComponent>(TEXT("PhyAnim"));
-
 	//Ai==============================
 	Ai_percep_stim = CreateDefaultSubobject<UAIPerceptionStimuliSourceComponent>(TEXT("AI_Perception_Stimuli"));
-	
 
 
 }
@@ -52,8 +49,7 @@ void AmainChar_Fox::BeginPlay()
 	Super::BeginPlay();
 
 	//RootComponent->AddLocalRotation(FRotator(0, 60, 0));
-	physAnim->SetSkeletalMeshComponent(GetMesh());
-
+	
 	bisDead = false;
 	
 
@@ -396,10 +392,10 @@ void AmainChar_Fox::EnableRagDoll() {
 	
 	
 	if (!bisDead) {
+		GetMesh()->SetSimulatePhysics(true);
 		cameraBoom->TargetArmLength = 300;
 		bisDead = true;
 		cameraBoom->SetWorldRotation(FRotator(290, 0, 0));
-		GetMesh()->SetAllBodiesSimulatePhysics(true);
 		DisableInput(UGameplayStatics::GetPlayerController(GetWorld(), 0));
 		cameraBoom->bDoCollisionTest = false;
 	}

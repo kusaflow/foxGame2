@@ -23,9 +23,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FollowCamera;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = PhyAnim, meta = (AllowPrivateAccess = "true"))
-	UPhysicalAnimationComponent* physAnim;
-
 	//AI-----------------
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = AI, meta = (AllowPrivateAccess = "true"))
 	class UAIPerceptionStimuliSourceComponent* Ai_percep_stim;
