@@ -5,6 +5,7 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Sight.h"
 #include "AI_Controller.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 // Sets default values
@@ -29,6 +30,11 @@ ABaseAI::ABaseAI()
 
 	if (AI_Sight)
 		AI_Sight->OnTargetPerceptionUpdated.AddDynamic(this, &ABaseAI::Sight_Perception_Updated);
+
+
+	bUseControllerRotationYaw = false;
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+
 	
 }
 
