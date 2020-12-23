@@ -18,6 +18,5 @@ public :
 
 	EBTNodeResult::Type ExecuteTask(class UBehaviorTreeComponent& owner_comp, uint8* node_memory);
 
-		
 	
 };

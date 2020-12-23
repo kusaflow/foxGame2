@@ -24,6 +24,12 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Path")
 	TArray<FVector> pathPoint;
 
+	UPROPERTY(EditAnywhere, Category = "movement")
+	float walkVelocity = 0;
+	
+	UPROPERTY(EditAnywhere, Category = "movement")
+	float RunVelocity =  0;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
