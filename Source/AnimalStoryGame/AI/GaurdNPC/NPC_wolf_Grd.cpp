@@ -3,3 +3,15 @@
 
 #include "NPC_wolf_Grd.h"
 
+ANPC_wolf_Grd :: ANPC_wolf_Grd() {
+	
+}
+
+void ANPC_wolf_Grd::BeginPlay()
+{
+	Super::BeginPlay();
+
+	walkVelocity = 150;
+	RunVelocity = 1150;
+
+}

@@ -6,6 +6,10 @@
 #include "Perception/AISenseConfig_Sight.h"
 #include "AI_Controller.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "../../characters/mainChar_Fox.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
+#include <BehaviorTree/BlackboardComponent.h>
+#include "Perception/AIPerceptionTypes.h"
 
 
 // Sets default values
@@ -20,7 +24,11 @@ ABaseAI::ABaseAI()
 
 	Sense_sight->SightRadius = 2500;
 	Sense_sight->LoseSightRadius = 3000;
-	Sense_sight->PeripheralVisionAngleDegrees = 80;
+	Sense_sight->PeripheralVisionAngleDegrees = 60;
+	Sense_sight->DetectionByAffiliation.bDetectEnemies = true;
+	Sense_sight->DetectionByAffiliation.bDetectFriendlies = true;
+	Sense_sight->DetectionByAffiliation.bDetectNeutrals = true;
+
 	
 
 	AI_Sight->ConfigureSense(*Sense_sight);
@@ -43,12 +51,15 @@ void ABaseAI::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	GetMesh()->bRenderCustomDepth = true;
+	GetMesh()->CustomDepthStencilValue = 2;
 }
 
 // Called every frame
 void ABaseAI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
 
 }
 
@@ -60,5 +71,34 @@ void ABaseAI::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 }
 
 void ABaseAI :: Sight_Perception_Updated(AActor* Actor, FAIStimulus Stimulus) {
+	bool isSensed = Stimulus.WasSuccessfullySensed();
 	
+
+	AmainChar_Fox* fox = Cast<AmainChar_Fox>(Actor);
+
+	UBlackboardComponent* bb = UAIBlueprintHelperLibrary::GetBlackboard(this);
+	
+	if (bb && fox) {
+		if (isSensed) {
+			bb->SetValueAsBool("isAware", isSensed);
+			bb->SetValueAsVector("LastSeenPawn", Stimulus.StimulusLocation);
+		}
+		bb->SetValueAsBool("CanSeePawn", isSensed);
+	}
+	
+
+
 }
+
+
+
+void ABaseAI :: SetVelocity(bool bDoWalk) {
+	if (bDoWalk) {
+		GetCharacterMovement()->MaxWalkSpeed = walkVelocity;
+	}
+	else {
+		GetCharacterMovement()->MaxWalkSpeed = RunVelocity;
+	}
+}
+
+

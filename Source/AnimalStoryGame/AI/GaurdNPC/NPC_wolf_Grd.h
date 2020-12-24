@@ -13,5 +13,10 @@ UCLASS()
 class ANIMALSTORYGAME_API ANPC_wolf_Grd : public ABaseAI
 {
 	GENERATED_BODY()
-	
+public:
+	ANPC_wolf_Grd();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 };

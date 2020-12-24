@@ -9,7 +9,7 @@
 #include <Kismet/GameplayStatics.h>
 
 Utask_MoveTowardsThePawn :: Utask_MoveTowardsThePawn(FObjectInitializer const& obj_init) {
-	NodeName = "GetPointToMove";
+	NodeName = "Move To Attack Pawn";
 }
 
 EBTNodeResult::Type Utask_MoveTowardsThePawn::ExecuteTask(class UBehaviorTreeComponent& owner_comp, uint8* node_memory) {

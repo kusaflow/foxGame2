@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class ANIMALSTORYGAME_API Utask_MoveTowardsThePawn : public UBTTask_BlackboardBase
 {
 	GENERATED_BODY()

@@ -42,7 +42,13 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	///=-------------------------
-	 UFUNCTION()
+	UFUNCTION()
 	void Sight_Perception_Updated(AActor* Actor, FAIStimulus Stimulus);
+
+
+	UFUNCTION(BlueprintCallable)
+	void SetVelocity(bool bDoWalk);
+
+
 
 };
