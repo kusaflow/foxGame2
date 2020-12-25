@@ -128,14 +128,15 @@ void AmainChar_Fox::Tick(float DeltaTime)
 		if (gameInst->bDoZoomOut) {
 			if (cameraBoom->TargetArmLength < 2000)
 				cameraBoom->TargetArmLength += 3000*DeltaTime;
-
-			cameraBoom->bDoCollisionTest = false;
+			//cameraBoom->ProbeChannel = ECollisionChannel::ECC_Camera;
+			//cameraBoom->bDoCollisionTest = false;
 		}
 		else {
 			if (cameraBoom->TargetArmLength > 800)
 				cameraBoom->TargetArmLength -= 500 * DeltaTime;
 			//cameraBoom->TargetArmLength = 800;
-			cameraBoom->bDoCollisionTest = true;
+			//cameraBoom->ProbeChannel = ECollisionChannel::ECC_WorldStatic;
+			//cameraBoom->bDoCollisionTest = true;
 		}
 	}
 

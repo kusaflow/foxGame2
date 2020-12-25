@@ -30,6 +30,20 @@ public:
 	UPROPERTY(EditAnywhere, Category = "movement")
 	float RunVelocity =  0;
 
+
+	//blackboard
+	class UBlackboardComponent* bb;
+
+	bool bisInViewRange;
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "movement")
+	float detectionMeter;
+
+	int AI_detectionSpeed = 400;
+	int AI_Un_detectionSpeed_fast = 500;
+	int AI_Un_detectionSpeed_Slow = 100;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

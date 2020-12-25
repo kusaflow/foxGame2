@@ -53,12 +53,36 @@ void ABaseAI::BeginPlay()
 	
 	GetMesh()->bRenderCustomDepth = true;
 	GetMesh()->CustomDepthStencilValue = 2;
+
+	bb = UAIBlueprintHelperLibrary::GetBlackboard(this);
+
+	bisInViewRange = false;
+	detectionMeter = 0;
+
 }
 
 // Called every frame
 void ABaseAI::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bisInViewRange) {
+		if(detectionMeter < 505)
+			detectionMeter += AI_detectionSpeed * DeltaTime;
+	}
+	else {
+		if (detectionMeter>300)
+			detectionMeter -= AI_Un_detectionSpeed_fast * DeltaTime;
+		else if (detectionMeter > 0)
+			detectionMeter -= AI_Un_detectionSpeed_Slow * DeltaTime;
+	}
+
+	if (detectionMeter >= 500) {
+		bb->SetValueAsBool("CanSeePawn", true);
+	}
+	else {
+		bb->SetValueAsBool("CanSeePawn", false);
+	}
 	
 
 }
@@ -76,14 +100,15 @@ void ABaseAI :: Sight_Perception_Updated(AActor* Actor, FAIStimulus Stimulus) {
 
 	AmainChar_Fox* fox = Cast<AmainChar_Fox>(Actor);
 
-	UBlackboardComponent* bb = UAIBlueprintHelperLibrary::GetBlackboard(this);
-	
 	if (bb && fox) {
 		if (isSensed) {
 			bb->SetValueAsBool("isAware", isSensed);
 			bb->SetValueAsVector("LastSeenPawn", Stimulus.StimulusLocation);
+			bisInViewRange = true;
 		}
-		bb->SetValueAsBool("CanSeePawn", isSensed);
+		else {
+			bisInViewRange = false;
+		}
 	}
 	
 
